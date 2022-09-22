@@ -20,6 +20,10 @@ app.get('/', async (req, res) => {
 	});
 });
 
+app.get('*', (req, res) => {
+	res.send('<h1>WHAT???</h1>');
+});
+
 AppDatasource.initialize()
 	.then(() => {
 		console.log('Conexion a base de datos exitosa');
