@@ -6,4 +6,4 @@ cmds = ['yarn']
 cmds = ['yarn build']
 
 [start]
-cmd = 'yarn run server:start'
+cmd = 'yarn start'
