@@ -1,0 +1,28 @@
+{
+  "name": "dollar-exchange-web",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/index.js",
+    "start:dev": "nodemon src/index.ts",
+    "build": "rimraf dist && tsc -p . && cpx './src/views/**' './dist/views' --clean && cpx './src/public/**' './dist/public' --clean"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/hbs": "^4.0.1",
+    "@types/node": "^18.7.18",
+    "cpx": "^1.5.0",
+    "nodemon": "^2.0.20",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "hbs": "^4.2.0",
+    "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.10"
+  }
+}
