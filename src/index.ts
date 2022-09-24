@@ -15,14 +15,21 @@ const priceRepository = AppDatasource.getRepository(Price);
 
 app.get('/', async (req, res) => {
 	const exchanges = await priceRepository.find();
+	console.log(req.socket.remoteAddress);
 	res.render('index', {
 		exchange: exchanges,
 	});
 });
 
+app.get('/exchanges_data', async (req, res) => {
+	const exchanges = await priceRepository.find()
+	return res.json(exchanges)
+})
+
 app.get('*', (req, res) => {
 	res.send('<h1>WHAT???</h1>');
 });
+
 
 AppDatasource.initialize()
 	.then(() => {
