@@ -15,21 +15,25 @@ const priceRepository = AppDatasource.getRepository(Price);
 
 app.get('/', async (req, res) => {
 	const exchanges = await priceRepository.find();
-	console.log(req.socket.remoteAddress);
+	console.log('Consumo de web: ' + req.socket.remoteAddress);
 	res.render('index', {
 		exchange: exchanges,
 	});
 });
 
 app.get('/exchanges_data', async (req, res) => {
-	const exchanges = await priceRepository.find()
-	return res.json(exchanges)
-})
+	const exchanges = await priceRepository.find();
+	console.log('Consumo de api: ' + req.socket.remoteAddress);
+	return res.json(exchanges);
+});
+
+app.get('/healtz', (_, res) => {
+	return res.status(200).send('ok');
+});
 
 app.get('*', (req, res) => {
 	res.send('<h1>WHAT???</h1>');
 });
-
 
 AppDatasource.initialize()
 	.then(() => {
