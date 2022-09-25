@@ -14,9 +14,8 @@ app.use(express.static(__dirname + '/public'));
 const priceRepository = AppDatasource.getRepository(Price);
 
 app.get('/', async (req, res) => {
-	console.log(req.headers)
 	const exchanges = await priceRepository.find();
-	console.log('Consumo de web: ' + req.socket.remoteAddress);
+	console.log('Consumo de web: ' + req.headers['true-client-ip']);
 	res.render('index', {
 		exchange: exchanges,
 	});
@@ -24,7 +23,7 @@ app.get('/', async (req, res) => {
 
 app.get('/exchanges_data', async (req, res) => {
 	const exchanges = await priceRepository.find();
-	console.log('Consumo de api: ' + req.socket.remoteAddress);
+	console.log('Consumo de api: ' + req.headers['true-client-ip']);
 	return res.json(exchanges);
 });
 
